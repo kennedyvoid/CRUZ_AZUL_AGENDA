@@ -1,1 +1,89 @@
-﻿<h2>Welcome to ASP.NET MVC @ViewData["Version"] on @ViewData["Runtime"]!</h2>
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<CRUZ_AZUL_AGENDA.Models.TB_AGENDAMENTO>
+
+
+@{
+    ViewBag.Title = "Agendamentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="content-header">
+    <h1>
+       Agendamentos
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Agendamentos</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3 class="box-title">Agendamentos</h3>
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="~/Pacientes/Index" class="btn btn-primary btn-block"><b>Cadastrar Paciente</b></a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="~/Medico/Index" class="btn btn-primary btn-block"><b>Cadastrar Medico</b></a>
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="~/Home/NovoAgendamento" class="btn btn-primary btn-block"><b>Novo Agendamento</b></a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example2" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example2_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" style="width: 182px;">#</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 199px;">Data</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 199px;">Horario</th>
+                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" style="width: 199px;"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Data)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.Horario)</td>
+                                            <td><a href="~/Home/ExcluirAgendamento?id=@item.Id" class="btn btn-danger btn-block"><b>Excluir</b></a></td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">
+                                    Página @Model.PageNumber de @Model.PageCount
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+
+                                    @Html.PagedListPager(Model, page => Url.Action("Index", new { pagina = page }))
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+

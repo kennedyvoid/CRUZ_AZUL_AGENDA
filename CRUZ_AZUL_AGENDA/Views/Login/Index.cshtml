@@ -1,13 +1,58 @@
-﻿@{
-    Layout = null;
-}
+﻿@model CRUZ_AZUL_AGENDA.Models.TB_USUARIO
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cruz Azul Agenda | Log in</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="shortcut icon" href="~/Imagens/favicon.ico" type="imagem/x-icon" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/admin-lte/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/admin-lte/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a><b>Cruz Azul</b>Agenda</a>
+        </div>
+        <div class="login-box-body">
+            <p class="login-box-msg">Entrar</p>
+            <form action="~/Login/Index" method="post">
+                <div class="form-group has-feedback">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "E-mail" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @Html.EditorFor(model => model.Senha, new { htmlAttributes = new { @class = "form-control", placeholder = "Senha", type = "password" } })
+                    @Html.ValidationMessageFor(model => model.Senha, "", new { @class = "text-danger" })
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
+                    </div>
+                </div>
+            </form>
+            <a href="/Cadastro/Index">Novo Cadastro</a>
+        </div>
+
+    </div>
+    <script src="~/Scripts/jquery-2.1.3.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @if (Session["Message"] != null)
+    {
+<script>
+            $(document).ready(function () {
+                alert('@Session["Message"]');
+            });
+</script>
+Session["Message"] = null;
+
+}
 </body>
 </html>
-

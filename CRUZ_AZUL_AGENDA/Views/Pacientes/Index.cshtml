@@ -1,13 +1,63 @@
-﻿@{
-    Layout = null;
-}
+﻿@model CRUZ_AZUL_AGENDA.Models.TB_PACIENTE
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Index</title>
-</head>
-<body>
-</body>
-</html>
+@{ ViewBag.Title = " Cadastrar Paciente";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<section class="content-header">
+    <h1>
+        Cadastrar Paciente
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active"> Cadastrar Paciente</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Novo Paciente</h3>
+                </div>
+
+                @using (Html.BeginForm("Index", "Pacientes", FormMethod.Post))
+                {
+    <div class="box-body">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Nome </label>
+            <div class="form-group has-feedback">
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", placeholder = "Nome" } })
+                @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+            </div>
+            <label for="exampleInputEmail1">Documento </label>
+            <div class="form-group has-feedback">
+                @Html.EditorFor(model => model.Documento, new { htmlAttributes = new { @class = "form-control", placeholder = "Documento" } })
+                @Html.ValidationMessageFor(model => model.Documento, "", new { @class = "text-danger" })
+            </div>
+            <label for="exampleInputEmail1">Email </label>
+            <div class="form-group has-feedback">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+            <label for="exampleInputEmail1">Telefone </label>
+            <div class="form-group has-feedback">
+                @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control", placeholder = "Telefone" } })
+                @Html.ValidationMessageFor(model => model.Telefone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </div>}
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
 
